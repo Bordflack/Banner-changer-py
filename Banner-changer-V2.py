@@ -33,7 +33,7 @@ except FileNotFoundError as err:
         print("================================================")
         print('Settings not found\nMaking new File')
         print("================================================")
-        loadedset = {'0': 1, '1': {'Fhig': 1, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': '/home/pi/Desktop/Cats/', 'Auto': False}, '2': {'Fhig': 1, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': '/home/pi/Desktop/Cats/', 'Auto': False}, '3': {'Fhig': 1, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': '/home/pi/Desktop/Cats/', 'Auto': False}}
+        loadedset = {'0': 1, '1': {'Fhig': 2, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': './Examples/', 'Auto': False}, '2': {'Fhig': 2, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': './Examples/', 'Auto': False}, '3': {'Fhig': 2, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': './Examples/', 'Auto': False}}
         sel = 1
         selopt = loadedset['1']
         Fhig = selopt['Fhig']
