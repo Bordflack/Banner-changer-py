@@ -24,6 +24,9 @@ try:
         Verb = selopt['Verb']
         ASCII = selopt['ASCII']
         strtup = selopt['Auto']     #Auto    start script without humaninteraction
+    print("\n\n================================================")
+    print("Loaded settings")
+    print("================================================\n")
     
 except FileNotFoundError as err:
     try:
@@ -43,29 +46,23 @@ except FileNotFoundError as err:
         strtup = selopt['Auto']
         with open('settings.file', 'w') as f:
             json.dump(loadedset, f, indent=2)
+        print("\n\n================================================")
+        print("Created new settings file")
+        print("\n\n================================================\n")
     except Exception as err:
+        print("\n\n================================================")
         print("ERROR")
         print(err)
+        print("================================================\n")
         exit()
-    #save = open('settings.file', 'wt')
-    #loadedset = str({0: {'Selected': 1}, 1: {'Fhig': 1, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': '/home/pi/Desktop/Cats/', 'Auto': False}, 2: {'Fhig': 1, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': '/home/pi/Desktop/Cats/', 'Auto': False}, 3: {'Fhig': 1, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': '/home/pi/Desktop/Cats/', 'Auto': False}})
-    #save.write(loadedset)
-    #save.close()
-#except Exception as err:
-#    print("================================================\n")
-#    print('Error in start up\n')
-#    print(err)
-    #print(loadedset)
-#    print("\n================================================\n")
-#    exit()
 
 if strtup == True:
     strtupopt = False
 #print("Strtup")
 while strtupopt == True:
-    print("================================================")
+    print("\n\n================================================")
     print('1.Help \n2.Options  \n3.Run  \n4.Quit')
-    print("================================================")
+    print("================================================\n")
     try:
         select = int(input('\n: '))
     except:
@@ -73,17 +70,19 @@ while strtupopt == True:
 
 
     if select == 1:
+        print("\n\n================================================")
         print('This script is used for changing the SSH Banner (Make sure to enable the Banner in the SSH-config file and that the file location is pointed at the correct file.)in a randomised Time in seconds.')
         print('It selects from the correctly named files and uses the content to overwrite the Banner File')
         print('\nUse this Script at your own Risk.\nIf Securety problems are found please notivy me.')
+        print("================================================")
         select = input(':')
         continue
     elif select == 2:                #Reading saved options and if wanted saves them
         inset = True
         while inset == True:
-            print("================================================")
+            print("\n\n================================================")
             print('1.Load \n2.Edit \n3.Back')
-            print("================================================")
+            print("================================================\n")
             try:
                 selset = int(input('Selection: '))
                 if selset == 1:
@@ -105,11 +104,10 @@ while strtupopt == True:
                                 with open('settings.file', 'w') as f:
                                     loadedset['0'] = selset
                                     json.dump(loadedset, f, indent=2)
-                                
-                                #opt = open('settings.file', 'wt')                              #change me whoop whoop
-                                #opt[0] = {'Selected': selset}
-                                #opt.close()
                                 inset = False
+                                print("\n\n================================================")
+                                print("Loaded setting:", selset)
+                                print("================================================\n")
                                 break
                             elif selset == 4:
                                 break
@@ -125,9 +123,9 @@ while strtupopt == True:
                 elif selset == 2:
                     while True:
                         try:
-                            print("================================================")
+                            print("\n\n================================================")
                             print('Edit which Setting 1-3?\n4 for back')
-                            print("================================================")
+                            print("================================================\n")
                             selset = int(input('Selection: '))
                         except:
                             print("\n================================================")
@@ -149,15 +147,19 @@ while strtupopt == True:
                                 tstrtup = tselopt['Auto']
                                 
                                 
-                                print('================================================')
+                                print('\n\n================================================')
                                 print('Selected Option:',selset)
-                                print('================================================')
+                                print('================================================\n')
                                                                                                                                                         #Changing temporary settings
                                 while True:
+                                    print("\n\n================================================")
                                     print('\n1.Highest file number:', tFhig, '\n2.Lowest file number:', tFlow, '\n3.Highest delay in s:', tHtim, '\n4.Lowest delay in s:', tLowtim, '\n5.Restart of ssh enabled:', tren, '\n6.Verbale mode:', tVerb, '\n7.Path to Files:', tASCII, '\n8.No intraction mode:', tstrtup)
+                                    print("================================================\n")
                                     num = int(input('\n0 for selection of back or save\nSelect 1-9:'))
                                     if num == 0:
+                                        print("\n\n================================================")
                                         num = int(input('\n0.back\n1.save\n2.exit \noptions:'))
+                                        print("================================================\n")
                                         if num == 0:
                                             continue
                                                                                                                                                         #Saveing temporary settings
@@ -165,11 +167,10 @@ while strtupopt == True:
                                             with open('settings.file', 'w') as f:
                                                 loadedset[str(selset)] = {'Fhig': tFhig, 'Flow': tFlow, 'Lowtim': tLowtim, 'Htim': tHtim, 'Rneed': tren, 'Verb': tVerb, 'ASCII': tASCII, 'Auto': tstrtup}
                                                 json.dump(loadedset, f, indent=2)
+                                            print("\n\n================================================")
+                                            print("Settings saved")
+                                            print("================================================\n")
                                             break
-                                            #opt = open('settings.file', 'wt')
-                                            #opt[0] = {'Selected': selset}
-                                            #opt[selset] = {'Fhig': tFhig, 'Flow': tFlow, 'Lowtim': tLowtim, 'Htim': tHtim, 'Rneed': tren, 'Verb': tVerb, 'ASCII': tASCII, 'Auto': tstrtup}
-                                            #opt.close()
                                         elif num == 2:
                                             break
                                     elif num == 1:
@@ -199,7 +200,7 @@ while strtupopt == True:
                                             tVerb = False
                                         continue
                                     elif num == 7:
-                                        print('\nuse "./" if the files are located in the same folder or in a sub folder\n')
+                                        print('\nuse of "./" may not work\n')
                                         ttASCII = input('Path:')
                                         print(ttASCII)
                                         if path.isdir(ttASCII) == False:
@@ -229,21 +230,23 @@ while strtupopt == True:
                     continue
                 else:
                     print('Enter a nuber from 1 to 3\n')
-#            except:
-#                print('Numbers please.')
-#            try:
-#                opt = open('setings.file', 'wrt')
-#                with open('/home/pi/Desktop/Cats/Setings.json', 'wrt') as opt:                           #Wat tis for
-#                    optionf = json.load(opt)
             except FileNotFoundError as err:
+                print("\n\n================================================")
                 print(err)
-            except:
+                print("================================================\n")
+            except Exception as err:
+                print("\n\n================================================")
                 print('···ERROR···')
+                print(err)
+                print("================================================\n")
             continue
     elif select == 3:
         strtupopt = False
         continue
     elif select == 4:
+        print("\n\n================================================")
+        print("Bye bye see you soon")
+        print("================================================")
         exit()
         
 
@@ -258,7 +261,9 @@ while strtupopt == True:
 #
 #
 #This worked before if no change happened it still works
-
+print("\n\n================================================")
+print("Starting programm")
+print("================================================\n")
 
 while True:
     try:
@@ -295,16 +300,11 @@ while True:
             except:
                 bax = 3
         if bax == 3 and ren == True:
-            try:
-                #subprocess.run ('systemctl restart ssh')
-                print("kek")
-            except:
-                print("\n\n================================================")
-                print("subprocess.run Error")
-                print("Can also be working who knows")
-                print("If this annoys you fix it yourself")
-                #print(err)
-                print("================================================\n")
+            print("\n\n================================================")
+            print("subprocess.run Error")
+            print("Can also be working who knows")
+            print("If this annoys you fix it yourself")
+            print("================================================\n")
         if ren == True:
             print("\n\n================================================")
             print(timestamp, "SSH Restarted")
@@ -328,9 +328,10 @@ while True:
         print("Interrupted by User")
         print("================================================\n")
         break
-    except:
+    except Exception as err:
         print("\n\n================================================")
         print('···Error···')
+        print(err)
         print("================================================\n")
         break
     finally:
