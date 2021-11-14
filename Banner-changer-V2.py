@@ -11,6 +11,12 @@ bax = 0
 ren = False
 strtupopt = True
 
+############################### Path to the Banner file
+
+path_banner = '/etc/ssh/Banner'
+
+###############################
+
 try:
     with open('settings.file', 'r') as load:
         loadedset = json.load(load)
@@ -33,7 +39,10 @@ except FileNotFoundError as err:
         print("================================================")
         print('Settings not found\nMaking new File')
         print("================================================")
-        loadedset = {'0': 1, '1': {'Fhig': 1, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': '/home/pi/Desktop/Cats/', 'Auto': False}, '2': {'Fhig': 1, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': '/home/pi/Desktop/Cats/', 'Auto': False}, '3': {'Fhig': 1, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': '/home/pi/Desktop/Cats/', 'Auto': False}}
+        loadedset = {'0': 1,
+                     '1': {'Fhig': 2, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': './Examples/', 'Auto': False},
+                     '2': {'Fhig': 2, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': './Examples/', 'Auto': False},
+                     '3': {'Fhig': 2, 'Flow': 0, 'Lowtim': 30, 'Htim': 60, 'Rneed': False, 'Verb': True, 'ASCII': './Examples/', 'Auto': False}}
         sel = 1
         selopt = loadedset['1']
         Fhig = selopt['Fhig']
@@ -212,7 +221,13 @@ while strtupopt == True:
                                     elif num == 8:
                                         num = int(input('\n1 to enable 0 to disable:'))
                                         if num == 1:
-                                            tstrtup = True
+                                            print("\n\n================================================")
+                                            tmp = input("Are you sure?\nThis setting will when loaded skip the user input section\nand start the script directly.\nY or N:")
+                                            print("================================================\n")
+                                            if tmp == 'Y':
+                                                tstrtup = True
+                                            else:
+                                                continue
                                         elif num == 0:
                                             tstrtup = False
                                         continue
@@ -248,8 +263,6 @@ while strtupopt == True:
         print("Bye bye see you soon")
         print("================================================")
         exit()
-        
-
 
 #
 #
@@ -261,6 +274,7 @@ while strtupopt == True:
 #
 #
 #This worked before if no change happened it still works
+
 print("\n\n================================================")
 print("Starting programm")
 print("================================================\n")
@@ -272,7 +286,7 @@ while True:
         time.sleep(tim)
 
         fp = open(ASCII + str(sell), 'rt')    #'/usr/share/banner/'
-        fp1 = open('/etc/ssh/Banner', 'wt')
+        fp1 = open(path_banner, 'wt')
         re = fp.read()
         fp1.write(re)
         timestamp = datetime.now()
@@ -326,6 +340,7 @@ while True:
     except KeyboardInterrupt:
         print("\n\n================================================")
         print("Interrupted by User")
+        print("Bye bye :3")
         print("================================================\n")
         break
     except Exception as err:
