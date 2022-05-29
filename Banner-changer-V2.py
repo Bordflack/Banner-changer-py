@@ -186,7 +186,7 @@ while strtupopt == True:
                                                 loadedset[str(selset)] = {'Fhig': tFhig, 'Flow': tFlow,
                                                                           'Lowtim': tLowtim, 'Htim': tHtim,
                                                                           'Rneed': tren, 'Verb': tVerb, 'ASCII': tASCII,
-                                                                          'Auto': tstrtup}
+                                                                          'Auto': tstrtup}  # Bit a mess here
                                                 json.dump(loadedset, f, indent=2)
                                             print("\n\n================================================")
                                             print("Settings saved")
